@@ -1,19 +1,18 @@
 import heapq
+import sys
 
-a = int(input())
+a = int(sys.stdin.readline())
 card_list = []
 for i in range(a):
-    card_list.append(int(input()))
-card_list.sort(reverse=False)
+    input_num = int(sys.stdin.readline())
+    heapq.heappush(card_list,input_num)
 
 cnt = 0
-if len(card_list) == 1:
-    print(cnt)
-else:
+while len(card_list) != 1:
     for j in range(a -1):
         first_low = heapq.heappop(card_list)
         second_low = heapq.heappop(card_list)
-        
+
         cnt += first_low + second_low
         heapq.heappush(card_list, first_low + second_low)
 
